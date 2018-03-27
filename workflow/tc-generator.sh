@@ -1,10 +1,11 @@
 #!/bin/bash
 
 cat <<EOF
+
+# image comes from Singularity Hub
 cont gis {
     type "singularity"
-    image "file:///lizard/projects/MINT/Kimetrica/container/gis.simg"
-    image_site "local"
+    image "shub://pegasus-isi/darpa_population_modeling"
 }
 
 tr county_population_raster {
