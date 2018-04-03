@@ -9,12 +9,14 @@ apt-get update && apt-get upgrade -y
 
 apt-get update && apt-get install -y --no-install-recommends \
         build-essential \
-        lsb-release \
         curl \
+        gdal-bin \
+        imagemagick \
         libfreetype6-dev \
         libgdal-dev \
         libpng12-dev \
         libzmq3-dev \
+        lsb-release \
         module-init-tools \
         openjdk-8-jdk \
         pkg-config \
