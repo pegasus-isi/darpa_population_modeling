@@ -14,9 +14,10 @@ from rasterio import features
 import geospatial
 
 
-def main(config_fname, geoshape_fname, fname_out, no_data_val=-9999, year=2017, grwth_rate_fct=0.0):
+def main(config_fname, geoshape_fname, fname_out, year, no_data_val=-9999, grwth_rate_fct=0.0):
     '''
     '''
+
     # Get raster reference project from configuration file (ref_proj)
     ref_proj = geospatial.get_raster_proj_config_file(config_fname)
 
@@ -47,7 +48,7 @@ def main(config_fname, geoshape_fname, fname_out, no_data_val=-9999, year=2017, 
         'dtype': np.int32,
         'crs': ref_proj['srs'],
         'transform': ref_proj['pixel'],
-        'nodata': -9999.0,
+        'nodata': float(no_data_val),
     }
 
     # Open raster file for writing
@@ -78,6 +79,8 @@ argparser.add_option('--config', action='store', dest='config',
                      help='Config file')
 argparser.add_option('--shapefile', action='store', dest='shapefile',
                      help='Shapefile')
+argparser.add_option('--year', action='store', dest='year',
+                     help='Year')
 argparser.add_option('--outfile', action='store', dest='outfile',
                      help='Filename of the output')
 (options, args) = argparser.parse_args()
@@ -90,10 +93,14 @@ if not options.shapefile:
     print('Please specify a shapefile with --shapefile')
     sys.exit(1)
 
+if not options.year:
+    print('Please specify a year with --year')
+    sys.exit(1)
+
 if not options.outfile:
     print('Please specify the name of the output with --outfile')
     sys.exit(1)
 
-main(options.config, options.shapefile, options.outfile)
+main(options.config, options.shapefile, options.outfile, int(options.year))
 
 
