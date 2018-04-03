@@ -11,6 +11,7 @@ apt-get update && apt-get install -y --no-install-recommends \
         build-essential \
         curl \
         gdal-bin \
+        gsfonts \  
         imagemagick \
         libfreetype6-dev \
         libgdal-dev \
