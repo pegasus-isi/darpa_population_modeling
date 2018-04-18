@@ -38,3 +38,9 @@ RUN export CFLAGS=$(gdal-config --cflags) && pip3 install GDAL==$(gdal-config --
 RUN pip3 install pandas
 RUN pip3 install geopandas
 RUN pip3 install rasterio
+
+# add user
+RUN useradd --gid 100 --uid 550 --create-home --password mint mint
+
+USER mint
+WORKDIR /home/mint
